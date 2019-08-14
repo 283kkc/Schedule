@@ -1,0 +1,25 @@
+{% load static i18n %}
+<!DOCTYPE html>{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+{% block extra_css %}{% endblock %}
+<title>{% block title %}My books{% endblock %}</title>
+</head>
+
+<body>
+  <div class="pull-right"><a href="/admin">管理者ページ</a></div>
+  <div class="container">
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </div>
+
+
+{% block extra_js %}{% endblock %}
+</body>
+
+</html>

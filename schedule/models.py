@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 import datetime
+import pdb
 
 # Create your models here.
 class Staff(models.Model):
@@ -21,7 +22,7 @@ class Entry(models.Model):
         (0, 0), (15, 15), (30, 30), (45, 45), (60, 60), (75, 75), (90, 90),
     )
     timeOfBreak = models.IntegerField(verbose_name='休憩時間', default=0, choices=Break_Choice)
-
+    workedtime = models.IntegerField(verbose_name='実働時間', default=0)
     approved = models.BooleanField(default=False)
 
     class Meta:
@@ -39,6 +40,16 @@ class Entry(models.Model):
         #管理者が出社記録を承認
         self.approved = True
         self.save()
+
+    def worked(self):
+        #実働時間
+        self.workedtime = 0
+        if self.timeOfEnd and self.timeOfStart:
+            #timedeltaの計算結果はdaysとsecondsとmicrosecondsで表される
+            time = self.timeOfEnd - self.timeOfStart - datetime.timedelta(minutes=self.timeOfBreak)
+            self.workedtime += time.seconds/60 + time.days*24*60
+        self.save()
+
 
     def __str__(self):
         return self.staff.name + '(' + str(self.date) + ')'

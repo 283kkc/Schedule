@@ -1,0 +1,42 @@
+[
+  {
+    "model": "schedule.staff",
+    "pk": 1,
+    "fields": {
+      "name": "tom",
+      "wage": 100,
+      "dayOfStart": "2018-10-10"
+    }
+  },
+  {
+    "model": "schedule.staff",
+    "pk": 2,
+    "fields": {
+      "name": "tim",
+      "wage": 100,
+      "dayOfStart": "2018-10-10"
+    }
+  },
+  {
+    "model": "schedule.entry",
+    "pk": 1,
+    "fields": {
+      "staff": 1,
+      "date": "2019-08-14",
+      "timeOfStart": "2019-08-14T10:00:00+09:00",
+      "timeOfEnd": "2019-08-14T18:00:00+09:00",
+      "timeOfBreak": 0
+    }
+  },
+  {
+    "model": "schedule.entry",
+    "pk": 2,
+    "fields": {
+      "staff": 1,
+      "date": "2019-08-15",
+      "timeOfStart": "2019-08-15T10:00:00+09:00",
+      "timeOfEnd": "2019-08-15T18:00:00+09:00",
+      "timeOfBreak": 0
+    }
+  }
+]

@@ -1,1 +1,7 @@
-<h1>インデックス</h1>
+{% extends "base.html" %}
+{% block content %}
+    <h1>インデックス</h1>
+    {% for object in object_list %}
+        <p><a href="{% url 'schedule:detail' pk=object.pk %}">{{ object.name }}</a></p>
+    {% endfor %}
+{% endblock content %}

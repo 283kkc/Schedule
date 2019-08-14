@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row">
+        <h1 class="text-danger">記録</h1>
+        <h3>{{ staff.name }}({{ month }}月)</h3>
+            <div class="pull-left"><a href="/detail/{{ staff.pk }}/{{ month|add:"-1" }}">先月</a></div>
+            <div class="text-center"><a href="/detail/{{ staff.pk }}/">当月</a></div>
+            <div class="pull-right"><a href="/detail/{{ staff.pk }}/{{ month|add:"1" }}">翌月</a></div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>出勤日</th>
+                    <td>出勤時間</td>
+                    <td>退社時間</td>
+                    <td>休憩時間</td>
+                    <td>実働時間</td>
+                    <td>承認</td>
+                </tr>
+             </thead>
+            <tbody>
+                {% for entry in entries %}
+                <tr>
+                    <th>{{ entry.date }}</th>
+                    <td>{{ entry.timeOfStart|date:"H:i:s" }}</td>
+                    <td>{{ entry.timeOfEnd|date:"H:i:s" }}</td>
+                    <td>{{ entry.timeOfBreak }}分</td>
+                    <td>{{ entry.workedtime }}分</td>
+                    <td>
+                        {% if entry.approved %}
+                            <div>認証済み</div>
+                        {% else %}
+                            <div class="text-danger">未認証</div>
+                        {% endif %}
+                    </td>
+                 </tr>
+                {% endfor %}
+                <tr>
+                    <th>合計</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ sum.workedtime__sum }}分</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

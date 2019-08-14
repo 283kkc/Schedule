@@ -1,5 +1,8 @@
+{% extends "base.html" %}
+
 {% block content %}
     <h1>登録</h1>
+    <p class="pull-right"><a href="{% url 'schedule:index' %}">一覧</a></p>
     <form method="Post">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
